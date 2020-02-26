@@ -133,10 +133,12 @@ public class Kayttoliittyma {
 
     private static void tehokkuustesti(Statement s) throws SQLException {
         //tyhjennetään tietokanta
-        suorita("DELETE FROM Asiakkaat", s, "", true);
-        suorita("DELETE FROM Paketit", s, "", true);
-        suorita("DELETE FROM Tapahtumat", s, "", true);
-        suorita("DELETE FROM Paikat", s, "", true);
+        suorita("DROP TABLE Asiakkaat", s, "", true);
+        suorita("DROP TABLE Paketit", s, "", true);
+        suorita("DROP TABLE Tapahtumat", s, "", true);
+        suorita("DROP TABLE Paikat", s, "", true);
+        
+        k1(s,true);
 
         Random r = new Random();
         String defKoodi = "K00000";

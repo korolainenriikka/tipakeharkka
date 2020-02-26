@@ -22,7 +22,7 @@ public class SQLdriver {
                 System.out.println(okMessage);
             }
         } catch (SQLException e) {
-            if (testi) {
+            if (!testi) {
                 System.out.println("VIRHE:");
                 System.err.print(e);
             } else {
@@ -48,21 +48,21 @@ public class SQLdriver {
             ResultSet r = s.executeQuery(kysely);
             boolean tuloksia = false;
             
-            while (r.next()&&r.getInt(kentät[0])!=0) {
+            while (r.next()/*&&r.getInt(kentät[0])!=0*/) { /*toinen ehto oli hiukka hämärä miks tää on olemassa, testissä testi ilman tätä, jos lisäät bäk bugaa todnäk seiskakomennossa!*/
                 tuloksia = true;
                 if (lisa.equals("Tapahtumien määrä: ")) {
-                    System.out.print(lisa);
+                    if(!testi)System.out.print(lisa);
                 }
                 for (int i = 0; i < kentät.length; i++) {
                     if (!testi) {
-                        System.out.print(r.getObject(kentät[i]));
+                        if(!testi)System.out.print(r.getObject(kentät[i]));
                     }
                     if (i != kentät.length - 1 && !testi) {
-                        System.out.print(", ");
+                        if(!testi) System.out.print(", ");
                     }
                 }
                 if (lisa.equals(" tapahtumaa")) {
-                    System.out.print(lisa);
+                    if(!testi)System.out.print(lisa);
                 }
                 if (!testi) {
                     System.out.println();
@@ -70,7 +70,7 @@ public class SQLdriver {
             }
             
             if (!tuloksia) {
-                System.out.println("virhe: ei hakutuloksia");
+                if(!testi) System.out.println("virhe: ei hakutuloksia");
                 return;
             }
         } catch (Exception e) {

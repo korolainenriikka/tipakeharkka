@@ -38,6 +38,10 @@ public class Komennot {
         suorita("CREATE TABLE Paketit (id INTEGER PRIMARY KEY, seurantakoodi TEXT NOT NULL UNIQUE, asiakas_id INTEGER NOT NULL REFERENCES Asiakkaat)", s, "", testi);
         suorita("CREATE TABLE Tapahtumat (id INTEGER PRIMARY KEY, paketti_id INTEGER NOT NULL REFERENCES Paketit, paikka_id  INTEGER NOT NULL REFERENCES Paikat, kuvaus TEXT DEFAULT('ei kuvausta'), date DATE NOT NULL, time TEXT NOT NULL)", s, "", false);
         suorita("CREATE TABLE Paikat (id INTEGER PRIMARY KEY, paikka TEXT UNIQUE NOT NULL)", s, "Tietokanta luotu", testi);
+        //luodaan indeksit
+        /*suorita("CREATE INDEX idx_date ON Tapahtumat (date)", s, "Luotiin 1. indeksi", testi);
+        suorita("CREATE INDEX idx_paketti_id ON Tapahtumat (paketti_id)", s, "Luotiin 2. indeksi", testi);
+        suorita("CREATE INDEX idx_asiakas_id ON Paketit (asiakas_id)", s, "Luotiin 3. indeksi", testi);*/
     }
 
     static void k2(String paikannimi, Statement s, boolean testi) {
@@ -82,7 +86,7 @@ public class Komennot {
         String[] kentat = {"seurantakoodi", "COUNT(kuvaus)"};
         hae("SELECT seurantakoodi, COUNT(kuvaus) FROM Paketit"
                 + " LEFT JOIN Asiakkaat ON asiakkaat.id=paketit.asiakas_id LEFT JOIN Tapahtumat ON tapahtumat.paketti_id=paketit.id WHERE nimi='" + name + "' GROUP BY seurantakoodi",
-                kentat, " tapahtumaa", s, false);
+                kentat, " tapahtumaa", s, testi);
     }
 
     public static void k8(String päivä, String paikka, Statement s, boolean testi) {
