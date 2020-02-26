@@ -1,0 +1,18 @@
+errormessages:
+
+1:java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (table Asiakkaat already exists)
+java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (table Paketit already exists)
+java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (table Tapahtumat already exists)
+java.sql.SQLException: [SQLITE_ERROR] SQL error or missing database (table Paikat already exists)
+
+-> virhe: tietokanta on jo olemassa
+
+2/3:[SQLITE_CONSTRAINT]  Abort due to constraint violation (column nimi is not unique)
+
+-> virhe: paikka/asiakas on jo tietokannassa
+
+4:[SQLITE_CONSTRAINT]  Abort due to constraint violation (column seurantakoodi is not unique)
+
+-> virhe: seurantakoodi on jo tietokannassa
+
+5: lisää tietokantaan tapahtuman vaikka pakettii ei löydy :(
